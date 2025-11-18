@@ -9,8 +9,19 @@
 
 .NOTES
     Version: 1.4.0
-    Author: Cloudflare Tunnel Automation
+    Author: @conticomp (https://github.com/conticomp)
     Requires: PowerShell 5.1, Administrator privileges, XProtect Mobile Server installed
+
+.CREDITS
+    Script created by @conticomp (https://github.com/conticomp)
+
+    Based on community implementations:
+    - YouTube tutorial by Joshua J
+    - Reddit solutions by joshooaj (Milestone employee)
+    - Cloudflare Tunnel documentation
+    - MilestonePSTools module patterns
+
+    Please preserve this attribution when sharing or modifying this script.
 
 .EXAMPLE
     .\Setup-XProtectCloudflare.ps1

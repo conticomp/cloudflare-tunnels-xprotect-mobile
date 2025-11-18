@@ -679,98 +679,19 @@ If you're still stuck after trying the troubleshooting steps:
    - Check if tunnel shows as "Healthy"
    - Review configuration matches your expectations
 
-4. **Run the diagnostic script** (if available):
-   ```powershell
-   .\Test-XProtectTunnel.ps1 -Hostname "your-hostname.example.com"
-   ```
-
 ---
-
-## Advanced: Phase 2 SSL Setup (Optional)
-
-After completing the basic tunnel setup, you can optionally add HTTPS to the backend Mobile Server connection.
-
-### Should You Add Backend SSL?
-
-The basic setup uses **"Flexible SSL"** mode:
-- **Browser → Cloudflare**: HTTPS (encrypted) ✅
-- **Cloudflare → Server**: HTTP on localhost (unencrypted, but through encrypted tunnel)
-
-**This is already secure** because:
-- The tunnel itself is encrypted
-- Traffic never leaves your server (localhost only)
-- Your IP is never exposed
-
-**Consider adding backend SSL if:**
-- You need defense-in-depth security
-- Compliance requires end-to-end HTTPS
-- Your security policy mandates it
-
-### How to Add Backend SSL
-
-Run the Phase 2 script:
-```powershell
-.\Setup-XProtectSSL.ps1
-```
-
-**What it does:**
-1. Creates a Cloudflare Origin Certificate (valid 15 years)
-2. Installs certificate to Windows Certificate Store
-3. Applies certificate to XProtect Mobile Server
-4. Updates tunnel to use `https://localhost:8082`
-
-**Requirements:**
-- Phase 1 completed
-- XProtect 2020 R3 or later
-- MilestonePSTools PowerShell module (auto-installed)
-
-**Benefits:**
-- No certificate renewals for 15 years
-- Free and simple to deploy
-- Full end-to-end encryption
-
-> **Note:** Cloudflare Origin Certificates are only trusted by Cloudflare, which is perfect for tunnel-only access.
-
----
-
-## Additional Resources
-
-### Official Documentation
-
-**Cloudflare:**
-- [Cloudflare Tunnel Overview](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/)
-- [Tunnel Configuration Guide](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/)
-- [Troubleshooting Tunnels](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/do-more-with-tunnels/troubleshooting/)
-
-**Milestone XProtect:**
-- [XProtect Mobile Server Documentation](https://doc.milestonesys.com/)
-- [Milestone Support Community](https://supportcommunity.milestonesys.com/)
-
-### Project Files
-
-- **QUICKSTART.md** - 5-minute quick start guide
-- **CHECKLIST.md** - Pre-installation checklist
-- **PROJECT_SUMMARY.md** - Technical overview
-- **CHANGELOG.md** - Version history
-
----
-
-## About This Project
-
-### What's Implemented
-
-- ✅ **Phase 1:** Tunnel creation with CORS fix (current)
-- ✅ **Phase 2:** Backend SSL certificates (optional)
-- ⏳ **Phase 3:** Health monitoring (planned)
-- ⏳ **Phase 4:** Multi-site orchestration (planned)
 
 ### Credits
+
+**Created by:** [@conticomp](https://github.com/conticomp)
 
 This automation is based on successful community implementations:
 - YouTube tutorial by Joshua J
 - Reddit solutions by joshooaj (Milestone employee)
 - Cloudflare Tunnel documentation
 - MilestonePSTools module patterns
+
+**Please preserve attribution when sharing or forking this project.**
 
 ### Contributing
 
